@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mb-3">
+        <h3>Current Balance: ${{ "%.2f"|format(balance) }}</h3>
+        <a href="{{ url_for('add') }}" class="btn btn-primary mt-2">Add Transaction</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in transactions %}
+            <tr>
+                <td>{{ t[4] }}</td>
+                <td>{{ t[1] }}</td>
+                <td>${{ "%.2f"|format(t[2]) }}</td>
+                <td>{{ t[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
